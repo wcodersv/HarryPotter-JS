@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harry Potter</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!--HEADER-->
+    <header class="header main">
+      <!--HEADER-INFO-->
+      <div class="header-info">
+        <h1 class="header-info__title">Harry Potter</h1>
+        <p class="header-info__description">
+          View all characters from the Harry Potter universe
+        </p>
+      </div>
+      <!--HEADER - SEARCH-->
+      <div class="header-search">
+        <div class="input-name">
+          <label for="name" class="input-text">Name </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Hermione"
+            class="field-input"
+          />
+        </div>
+
+        <div class="input-house">
+          <label for="house" class="input-text">House</label>
+          <select name="house" id="house" class="field-input">
+            <option value="">-- Choose one --</option>
+          </select>
+        </div>
+      </div>
+    </header>
+    <!--BORDER-LINE-->
+    <div class="border-line"></div>
+    <!--MAIN-->
+    <main>
+      <div class="container main"></div>
+    </main>
+
+    <!--SCRIPT-->
+    <script src="./index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,159 @@
+:root {
+  --color-text: #000;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+.main {
+  width: 688px;
+  margin: 0 auto;
+}
+
+/*HEADER*/
+.header {
+  padding-bottom: 40px;
+}
+
+.header-info {
+  padding-top: 64px;
+  margin-bottom: 48px;
+}
+
+.header-info__title {
+  color: var(--color-text);
+  font-size: 64px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -1.28px;
+  margin: 0;
+}
+
+.header-info__description {
+  color: var(--color-text);
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 36px;
+  margin: 0;
+}
+
+/*HEADER - SEARCH*/
+.header-search {
+  display: flex;
+}
+
+.input-text {
+  color: #818182;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+
+  padding-bottom: 3px;
+  display: block;
+}
+
+.input-name {
+  margin-right: 20px;
+}
+
+
+
+#name {
+  width: 452px;
+  box-sizing: border-box;
+  color: #152536;
+}
+
+#name:placeholder-shown {
+  color: var(--secondary-light-color, #abb5be);
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  padding-left: 17.22px;
+}
+
+.field-input {
+  height: 38px;
+
+  border-radius: 4px;
+  border: 1px solid var(--stroke-input, #ced4da);
+  background: var(--gray-white, #fff);
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  padding-left: 17.22px;
+}
+
+#house {
+  width: 216px;
+  box-sizing: border-box;
+  color: var(--secondary-light-color, #abb5be);
+}
+
+#house option {
+  color: #152536; 
+}
+
+ 
+/*BORDER*/
+.border-line {
+  border-bottom: 1px solid #dee2e6;
+  margin: 0;
+  padding: 0;
+}
+
+/*MAIN*/
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 409px);
+  column-gap: 20px;
+  row-gap: 20px;
+  margin-top: 40px;
+}
+
+.card {
+  border-radius: 4px;
+  border: 1px solid var(--stroke-light, #dee2e6);
+  background: #fff;
+  width: 334px;
+  height: 409px;
+}
+
+.card-photo {
+  border-radius: 4px 4px 0px 0px;
+  width: 334px;
+  height: 192px;
+  margin-bottom: 20px;
+}
+
+.card-info {
+  margin: 0 auto;
+  width: 285px;
+  height: 169px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-info h2 {
+  margin: 0;
+  color: var(--heading-title-color, #152536);
+  font-size: 20px;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.card-info p {
+  margin: 0;
+  color: var(--heading-title-color, #152536);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+}

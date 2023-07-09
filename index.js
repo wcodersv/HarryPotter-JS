@@ -19,26 +19,76 @@ function addSelectHouseOptions(students) {
     });
 }
 
+let cardsPerLoad = 4;
+let currentPosition = 4;
+
+let allStudents;
+
+let prevName;
+let prevHouse;
+let filteredStudents;
+
+let ldsDefault = document.querySelector('.lds-default');
+ldsDefault.style.display = 'block';
+
 fetch("https://hp-api.onrender.com/api/characters")
     .then((response) => response.json())
     .then((data) => {
-        renderAllDataList(data);
-        return data;
-    })
-    .then((data) => {
+        renderStudentsFromStart(data);
+        ldsDefault.style.display = 'none';
+        allStudents = data;
+
         addSelectHouseOptions(data);
-        inputName.addEventListener("input", function (event) {
-            renderFilteredDataList(data, event.target.value, selectHouse.value);
-        });
-        selectHouse.addEventListener("change", function (event) {
-            renderFilteredDataList(data, inputName.value, event.target.value);
-        });
+        addHandlers();
     })
     .catch((error) => {
         console.log("Произошла ошибка", error);
     });
 
 let divContainer = document.querySelector(".container");
+
+function addHandlers() {
+    inputName.addEventListener("input", event => handleNameInput(event.target.value));
+
+    selectHouse.addEventListener("change", event => handleHouseChange(event.target.value));
+
+    // Привязываем обработчик скроллинга
+    window.addEventListener("scroll", handleScroll);
+}
+
+function handleNameInput(name) {
+    const filteredStudents = getFilteredStudents(name, selectHouse.value);
+    renderStudentsFromStart(filteredStudents);
+}
+
+function handleHouseChange(house) {
+    const filteredStudents = getFilteredStudents(inputName.value, house);
+    renderStudentsFromStart(filteredStudents);
+}
+
+function handleScroll() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const visibleHeight = window.innerHeight;
+    const totalHeight = document.documentElement.offsetHeight - 100;
+
+    const filteredStudents = getFilteredStudents(inputName.value, selectHouse.value);
+
+    if (scrollTop + visibleHeight >= totalHeight) {
+        // Достигнут конец страницы, отрисовываем следующую порцию карточек
+        const nextPosition = currentPosition + cardsPerLoad;
+        renderNextStudens(currentPosition, nextPosition, filteredStudents);
+        currentPosition = nextPosition;
+    }
+}
+
+function getFilteredStudents(name, house) {
+    if (name !== prevName || house !== prevHouse) {
+        filteredStudents = filterStudents(allStudents, name, house);
+        prevName = name;
+        prevHouse = house;
+    }
+    return filteredStudents;
+}
 
 /* Функция для отрисовки одной карточки */
 function renderStudent(student) {
@@ -61,27 +111,24 @@ function renderStudent(student) {
 }
 
 /*Функция для отрисовки карточек всех карточек вначале*/
-function renderAllDataList(students) {
-    students.forEach(renderStudent);
+function renderStudentsFromStart(students) {
+    clearList();
+    renderNextStudens(0, cardsPerLoad, students)
 }
 
 //Функция для удаления div-card внутри container
 function clearList() {
     divContainer.innerHTML = "";
+    currentPosition = 4;
 }
 
-function renderFilteredDataList(students, name, house) {
-    clearList();
+function filterStudents(students, name, house) {
     if (!name && !house) {
-        renderAllDataList(students);
-        return;
+        return students;
     }
-
     if (name) {
         name = name.toLowerCase().trim();
     }
-
-    students.filter(isStudentMatched).forEach(renderStudent);
 
     /*Функция для проверки совпадает ли карточка с ключевыми словами*/
     function isStudentMatched(student) {
@@ -93,4 +140,10 @@ function renderFilteredDataList(students, name, house) {
         }
         return student.house === house;
     }
+
+    return students.filter(isStudentMatched);
+}
+
+function renderNextStudens(startIndex, endIndex, students) {
+    students.slice(startIndex, endIndex).forEach(renderStudent);
 }

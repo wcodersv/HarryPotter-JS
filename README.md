@@ -11,6 +11,6 @@
 Дополнительно:
   - осуществить подгрузку данных с сервера (метод fetch)
   - сделать спиннер загрузки
-  - сделать ленивую загрузку (lazy loading) (по 4 карточки)
+  - сделать ленивую загрузку (lazy loading) с помощью JS (по 4 карточки)
 
 <p><a href="https://www.figma.com/file/IEKD0HrGYAPdk5CXmRxiTR/Projects?node-id=2489%3A799&mode=dev">Макет в Figma</a></p>
